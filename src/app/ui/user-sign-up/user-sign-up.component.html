@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="registration form">
+    <header>Signup</header>
+    <form>
+      <input
+        type="text"
+        name="userame"
+        placeholder="User name"
+        [(ngModel)]="signupObj.userName"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="signupObj.email"
+      />
+      <input
+        type="password"
+        name="pasword"
+        placeholder="Password"
+        [(ngModel)]="signupObj.password"
+      />
+      <input type="button" class="button" (click)="onSignUp()" value="Signup" />
+    </form>
+    <div class="signup">
+      <span class="signup"
+        >Already have an account? <a routerLink="/login">Login</a></span
+      >
+    </div>
+  </div>
+</div>

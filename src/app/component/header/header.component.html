@@ -1,0 +1,76 @@
+<header>
+  <div class="navbar shadow sm" style="background-color: #ffb74d">
+    <div
+      class="navbar-brand align-item-center d-flex"
+      style="margin-left: 100px"
+    >
+      <i class="fas fa-shipping-fast" style="color: white; font-size: 40px">
+        &nbsp;
+      </i>
+      <strong style="color: white; font-size: 25px">Believe</strong>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          (keyup)="search($event)"
+          placeholder="search products"
+        />
+      </div>
+      <span class="fas fa-search search-icon"></span>
+      <nav class="navbar-expand" style="margin-left: 500px">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+            <li class="nav-item">
+              <a
+                class="nav-link fw-semibold text-uppercase me-1 text-white"
+                [routerLink]="['products']"
+                role="button"
+                aria-expanded="false"
+              >
+                home
+              </a>
+            </li>
+          </ul>
+          <button routerLink="/cart" class="btn" style="color: white">
+            <i style="font-size: 30px" class="fas fa-cart-plus"></i>
+            <div style="font-size: 10px" class="badge bg-danger">
+              {{ totalItem }}
+            </div>
+          </button>
+
+          <button class="btn" style="color: white; font-size: 30px">
+            <i class="fas fa-solid fa-user"></i>
+            <!-- <p>{{ userName }}</p> -->
+          </button>
+
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link fas fa-solid fa-bars fw-semibold text-uppercase text-white me-1"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="font-size: 30px; margin-left: 10px"
+              >
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">About Us</a></li>
+                <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Terms & Conditions</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item"  (click)="confirmSignOut()" >Sign Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>

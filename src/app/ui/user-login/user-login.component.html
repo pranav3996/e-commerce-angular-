@@ -1,0 +1,28 @@
+<div class="container">
+  <input type="checkbox" id="check" />
+  <div class="login form">
+    <header>Login</header>
+
+    <form>
+      <input
+        type="text"
+        name="useName"
+        placeholder="User Name"
+        [(ngModel)]="loginObj.userName"
+      />
+      <input
+        type="password"
+        name="paword"
+        placeholder="Password"
+        [(ngModel)]="loginObj.password"
+      />
+      <a href="#">Forgot password?</a>
+      <input type="button" class="button" (click)="onLogin()" value="Login" />
+    </form>
+    <div class="signup">
+      <span class="signup"
+        >Don't have an account? <a routerLink="/signup">Signup</a></span
+      >
+    </div>
+  </div>
+</div>
