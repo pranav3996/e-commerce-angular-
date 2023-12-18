@@ -116,7 +116,7 @@ label {
   background-color: #ffb74d;
   color: white;
   height: 40px;
-  width: 40px;
+  width: 35%;
   border-radius: 3px;
   border: none;
 }
@@ -135,10 +135,10 @@ span.price {
   background-color: #ffb74d;
   color: white;
   height: 40px;
-  width: 200px;
+  width: 20%;
   border-radius: 3px;
   border: none;
-  margin-left: 1000px;
+  margin-left: 80%;
   margin-top: 10px;
  
 }

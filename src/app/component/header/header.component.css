@@ -1,16 +1,10 @@
 .form-control {
   border-radius: 10px;
-  width: 600px;
+  width: 400px;
   margin-left: 20px;
 }
 
-.search-icon {
-  position: absolute;
-  z-index: 10;
-  right: 54%;
-  top: 23px;
-  color: rgb(224, 161, 23);
-}
+
 .dropdown-item:active,
 .dropdown-item:focus {
   background-color: rgb(224, 161, 23) !important;

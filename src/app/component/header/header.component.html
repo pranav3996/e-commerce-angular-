@@ -1,5 +1,5 @@
-<header>
-  <!-- <div class="navbar shadow sm" style="background-color: #ffb74d">
+<!-- <header>
+   <div class="navbar shadow sm" style="background-color: #ffb74d">
     <div
       class="navbar-brand align-item-center d-flex"
       style="margin-left: 100px"
@@ -72,8 +72,8 @@
         </div>
       </nav>
     </div>
-  </div> -->
-</header>
+  </div>
+</header>  -->
 <nav class="navbar navbar-expand-lg " style="background-color: #ffb74d">
   <div class="container-fluid justify-content-between">
    
@@ -87,26 +87,27 @@
       <strong style="color: white; font-size: 25px">Believe</strong>
   
       <!-- Search form -->
-      <form class="input-group w-auto my-auto d-none d-sm-flex">
+      <form class="input-group w-auto my-auto  d-sm-flex">
+        
         <input
         type="text"
-        class="form-control rounded"
+        class="form-control "
+      
         [(ngModel)]="searchTerm"
         (keyup)="search($event)"
         placeholder="search products"
-        style="min-width: 125px;"
+       
       />
       
-      <span class="input-group-text border-0 d-none d-lg-flex" style="background-color: darkgray;"
-      ><i class="fas fa-search " style="font-size: 15px;"></i
-    ></span>
+    
       </form>
+    
     </div>
     <!-- Left elements -->
 
 
     <!-- Right elements -->
-    <ul class="navbar-nav flex-row d-none d-md-flex" style="margin-right: 10%;">
+    <ul class="navbar-nav flex-row d-none d-md-flex" style="margin-right: 10%; margin-top: 1%;">
       <li class="nav-item me-3 me-lg-1 active">
         <a class="nav-link" [routerLink]="['products']">
           <span><i class="fas fa-home fa-lg" style="font-size: 30px"></i></span>
