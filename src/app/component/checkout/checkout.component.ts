@@ -121,9 +121,10 @@ export class CheckoutComponent implements OnInit {
 
   // Method to initialize PayPal configuration
   private initConfig(): void {
+    var Client_ID='AfRdDCfUoQG-FZTY6z3-02s2RPbvn37HWjp_8J3OsAYhFGLYFgENC_a2GQTHb_l1S9u_uL2yazopBxgv'
     this.payPalConfig = {
       currency: 'EUR',
-      clientId: `${environment.Client_ID}`,
+      clientId: `${Client_ID}`,
       createOrderOnClient: (data) =>
         <ICreateOrderRequest>{
           intent: 'CAPTURE',

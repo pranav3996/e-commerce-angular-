@@ -15,3 +15,9 @@
 .dropdown-item:focus {
   background-color: rgb(224, 161, 23) !important;
 }
+
+i{
+  color: white; 
+  margin-top: 1%;
+  font-size: 30px;
+}
