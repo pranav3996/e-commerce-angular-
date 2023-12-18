@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/service/cart.service';
 import { FormDataService } from 'src/app/service/form-data.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { environment } from 'src/environments/environment';
+import { CdkDragEnter, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-checkout',
@@ -182,4 +183,67 @@ export class CheckoutComponent implements OnInit {
       },
     };
   }
+
+  checkout_positions = [
+    { index: 0, name: 'Buy_Items' },
+    { index: 1, name: 'Payment_Options' },
+    { index: 2, name: 'Billing_Address'},
+  
+
+];
+public widgetList = ['Buy_Items', 'Payment_Options', 'Billing_Address'];
+selectedWidgetList = [];
+selectedCardList = [];
+@ViewChild('dropListContainer', { static: false }) dropListContainer?: ElementRef;
+
+dropListReceiverElement?: HTMLElement;
+dragDropInfo?: {
+    dragIndex: number;
+    dropIndex: number;
+};
+dragEntered(event: CdkDragEnter<number>) {
+  const drag = event.item;
+  const dropList = event.container;
+  const dragIndex = drag.data;
+  const dropIndex = dropList.data;
+
+  this.dragDropInfo = { dragIndex, dropIndex };
+  moveItemInArray(this.checkout_positions, dragIndex, dropIndex);
+  console.log('this.checkout_positions', this.checkout_positions);
+
+}
+
+// isSelected(widget: string): boolean {
+//   return this.selectedWidgetList.includes(widget);
+// }
+// onClickCheckbox() {
+//   this.selectedCardList = []
+//   this.selectedWidgetList.forEach(y => {
+//       this.defaultdashboardPositions.forEach(x => {
+//           if (x.name == y) {
+//               this.selectedCardList.push(x);
+//           }
+//       })
+//   });
+//   const sortedArray = this.selectedCardList.sort((a, b) => a.index - b.index);
+//   const rearrangedArray = sortedArray.map((item, i) => {
+//       if (item.index !== i) { item.index = i; }
+//       return item;
+//   });
+//   this.selectedCardList = [];
+//   this.selectedCardList = rearrangedArray;
+// }
+// onResetToDefault(){
+//   this.selectedCardList = [];
+//   this.selectedCardList = this.defaultdashboardPositions;
+//   this.selectedWidgetList=this.selectedCardList.map(x=>x.name);
+// }
+
+dragAndDropEnabled = true;
+buttonLabel = 'Disable Drag and Drop';
+toggleDragDrop() {
+
+  this.dragAndDropEnabled = !this.dragAndDropEnabled;
+  this.buttonLabel = this.dragAndDropEnabled ? 'Disable Drag and Drop' : 'Enable Drag and Drop';
+}
 }

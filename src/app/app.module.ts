@@ -17,6 +17,7 @@ import { CartService } from './service/cart.service';
 import { ShippingAddressComponent } from './component/shipping-address/shipping-address.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { UserSignUpComponent } from './ui/user-sign-up/user-sign-up.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -40,7 +41,8 @@ import { UserSignUpComponent } from './ui/user-sign-up/user-sign-up.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    DragDropModule
 
   ],
   providers: [AuthGuard,UserService,CartService],
