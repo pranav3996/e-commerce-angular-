@@ -241,9 +241,10 @@ dragEntered(event: CdkDragEnter<number>) {
 // }
 
 dragAndDropEnabled = true;
+isDragActive = false;
 buttonLabel = 'Disable Drag and Drop';
 toggleDragDrop() {
-
+  this.isDragActive = !this.isDragActive;
   this.dragAndDropEnabled = !this.dragAndDropEnabled;
   this.buttonLabel = this.dragAndDropEnabled ? 'Disable Drag and Drop' : 'Enable Drag and Drop';
 }

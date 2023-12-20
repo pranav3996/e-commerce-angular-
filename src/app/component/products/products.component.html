@@ -47,38 +47,40 @@
       *ngFor="let item of filterCategory | filter : searchKey : 'title'"
     >
       <!-- <ng-container *ngFor="let item of productList"> -->
-      <div class="card col-sm-3">
-        <img src="{{ item.image }}"  alt="" style="width: 100%;" />
-        <h5
-          style="
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100ch;
-          "
-        >
-          {{ item.title }}
-        </h5>
-        <p
-          style="
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100ch;
-          "
-        >
+        <div class="col-md-4"> <div class="card ">
         
-          {{ item.description }}
-        </p>
-        <p><strong>Price:</strong> ${{ item.price }}</p>
-        <button
-          class="btn"
-          (click)="addtocart(item)"
-          style="background-color: #ffb74d"
-        >
-          Add to cart
-        </button>
-      </div>
+          <img src="{{ item.image }}"  alt="" style="width: 100%;" />
+          <h5
+            style="
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 100ch;
+            "
+          >
+            {{ item.title }}
+          </h5>
+          <p
+            style="
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 100ch;
+            "
+          >
+          
+            {{ item.description }}
+          </p>
+          <p><strong>Price:</strong> ${{ item.price }}</p>
+          <button
+            class="btn"
+            (click)="addtocart(item)"
+            style="background-color: #ffb74d"
+          >
+            Add to cart
+          </button>
+        </div></div>
+     
     </ng-container>
   </div>
 </div>
