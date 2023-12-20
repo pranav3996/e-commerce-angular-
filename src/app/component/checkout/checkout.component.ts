@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/app/service/cart.service';
 import { FormDataService } from 'src/app/service/form-data.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-// import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { CdkDragEnter, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({

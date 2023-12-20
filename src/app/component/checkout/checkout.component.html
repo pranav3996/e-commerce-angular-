@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-75">
-    <div class="container" style="margin-top: 50px">
+    <div class="container" style="margin-top: 50px;  background-color: #f2f2f2;">
       <ng-container *ngIf="products.length != 0">
-        <button (click)="toggleDragDrop()" class="btnl">{{ buttonLabel }}</button>
+        <button (click)="toggleDragDrop()" class="btndragdrop">{{ buttonLabel }}</button>
         <div #dropListContainer class="example-container" cdkDropListGroup>
         <div *ngFor="let item of checkout_positions; let i = index" cdkDropList [cdkDropListData]="i"
         >
@@ -13,7 +13,7 @@
           <div *ngSwitchCase="'Buy_Items'">
           <div
             class="container"
-            style="margin-top: 20px; background-color: white"
+        
           >
             <h1 class="h3 mb-5 mt-3">Buy Items</h1>
             <div class="cart-product">
@@ -62,6 +62,7 @@
                       <button
                         (click)="removeItem(item)"
                         class="btnd btn-danger"
+                        style="background-color: #DC3545;"
                       >
                         <i class="fas fa-trash-alt"></i>
                       </button>
@@ -86,7 +87,7 @@
           <div *ngSwitchCase="'Payment_Options'">
           <div
           class="container"
-          style="margin-top: 20px; background-color: white"
+ 
         >
           <h1 class="h3 mb-5 mt-3">Payament Options </h1>
           <div class="cart-product">
@@ -121,7 +122,7 @@
           <div *ngSwitchCase="'Billing_Address'">
           <div
             class="container"
-            style="margin-top: 20px; background-color: white"
+         
           >
             <h1 class="h3 mb-5 mt-3">Billing Address </h1>
             <div class="cart-product">
@@ -181,20 +182,23 @@
                       placeholder="5/2 Shivaji Nagar"
                       required
                     />
-                    <label for="city"
-                      ><i class="fa fa-institution"></i> City</label
-                    >
-                    <input
-                      type="text"
-                      id="city"
-                      name="city"
-                      [(ngModel)]="user.city"
-                      placeholder="Mumbai"
-                      required
-                    />
+                    
 
                     <div class="row">
-                      <div class="col-50">
+                      <div class="col-30">
+                        <label for="city"
+                        ><i class="fa fa-institution"></i> City</label
+                      >
+                      <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        [(ngModel)]="user.city"
+                        placeholder="Mumbai"
+                        required
+                      />
+                      </div>
+                      <div class="col-30">
                         <label for="state">State</label>
                         <input
                           type="text"
@@ -205,7 +209,7 @@
                           required
                         />
                       </div>
-                      <div class="col-50">
+                      <div class="col-30">
                         <label for="zip">Zip</label>
                         <input
                           type="text"
@@ -259,7 +263,7 @@
             <button
               routerLink="/products"
               class="btn"
-              style="background-color: #ffb74d"
+             
             >
               Shop Now
             </button>
