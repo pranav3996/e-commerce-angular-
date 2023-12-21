@@ -49,24 +49,13 @@
       <!-- <ng-container *ngFor="let item of productList"> -->
         <div class="col-md-4"> <div class="card ">
         
-          <img src="{{ item.image }}"  alt="" style="width: 100%;" />
+          <img src="{{ item.image }}"  alt=""  />
           <h5
-            style="
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              max-width: 100ch;
-            "
           >
             {{ item.title }}
           </h5>
           <p
-            style="
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              max-width: 100ch;
-            "
+           
           >
           
             {{ item.description }}
@@ -75,7 +64,7 @@
           <button
             class="btn"
             (click)="addtocart(item)"
-            style="background-color: #ffb74d"
+      
           >
             Add to cart
           </button>

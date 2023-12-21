@@ -40,3 +40,22 @@
     transition: 0.3s ease-in-out;
     transform: scale(1.1);
 }
+button{
+    background-color: #ffb74d
+}
+p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100ch;
+}
+h5{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100ch;
+}
+img{
+    width: 100%;
+    margin-top: 5px
+}

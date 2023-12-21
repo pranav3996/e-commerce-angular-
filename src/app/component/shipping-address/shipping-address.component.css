@@ -1,13 +1,4 @@
-/* .checkout h1{
-    text-align:center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.checkout h3{
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-} */
+
 
 
 .user-info-container {
@@ -28,10 +19,12 @@
     -ms-flex: 25%; /* IE10 */
     flex: 25%;
   }
-  
-  .col-50 {
-    -ms-flex: 50%; /* IE10 */
+  .col-50{
     flex: 50%;
+  }
+  .col-30 {
+    -ms-flex: 50%; /* IE10 */
+    flex: 0%;
   }
   
   .col-75 {
@@ -40,7 +33,7 @@
   }
   
   .col-25,
-  .col-50,
+  .col-30,
   .col-75 {
     padding: 0 16px;
   }
