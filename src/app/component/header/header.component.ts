@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
@@ -22,10 +23,18 @@ export class HeaderComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,private authService: AuthService
   ) {}
-
+  isAuthenticated=false
   ngOnInit(): void {
+    this.authService.userSub.subscribe(user =>{
+      this.isAuthenticated=user ? true:false;
+   
+      console.log("This is user " +user)
+      // Load the cart from local storage
+    this.cartService.loadCart();
+    // console.log("This is loadCart " + this.cartService.loadCart());
+    })
     // Subscribe to the cartService to get the total number of items in the cart
     this.cartService.getProducts().subscribe((res) => {
       this.totalItem = res.length;
@@ -49,7 +58,7 @@ export class HeaderComponent implements OnInit {
   }
 
   // Method to show a confirmation dialog before signing out
-  confirmSignOut() {
+  confirmSignOut(event:Event) {
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will be logged out!',
@@ -61,17 +70,19 @@ export class HeaderComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         // User confirmed, perform sign-out
-        this.signOut();
+        event.preventDefault();
+        this.authService.logout();
       }
     });
   }
 
   // Method to handle user sign-out
-  signOut() {
-    // Log the sign-out action (optional)
-    console.log('Signing out...');
+  // signOut() {
+  //   // Log the sign-out action (optional)
+  //   console.log('Signing out...');
 
-    // Navigate to the login page after signing out
-    this.router.navigate(['login']);
-  }
+  //   // Navigate to the login page after signing out
+  //   this.router.navigate(['login']);
+  // }
+ 
 }

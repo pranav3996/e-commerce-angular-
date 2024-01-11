@@ -28,7 +28,8 @@ const routes: Routes = [
   },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
-  { path: 'view', component: ShippingAddressComponent, canActivate: [AuthGuard] }
+  { path: 'view', component: ShippingAddressComponent, canActivate: [AuthGuard] },
+   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
+import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -20,9 +21,10 @@ export class ProductsComponent implements OnInit {
   // Array to store products in the cart
   products: any[] = [];
 
-  constructor(private api: ApiService, private cartService: CartService) {}
+  constructor(private api: ApiService, private cartService: CartService ,private authService: AuthService) {}
 
   ngOnInit(): void {
+   
     // Fetch products from the ApiService
     this.api.getProduct().subscribe((res) => {
       // Assign fetched data to productList and filterCategory
@@ -72,4 +74,10 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+ 
+ 
+  
+  
+
+
 }

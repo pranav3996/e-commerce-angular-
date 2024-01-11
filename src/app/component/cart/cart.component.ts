@@ -23,6 +23,7 @@ export class CartComponent implements OnInit {
 
     // Fetch products directly from the CartService (assuming getProduct() returns the entire cart)
     this.productss = this.cartService.getProduct();
+
   }
 
   // Remove a specific item from the cart

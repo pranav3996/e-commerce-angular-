@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <input type="checkbox" id="check" />
   <div class="login form">
     <header>Login</header>
@@ -24,5 +24,53 @@
         >Don't have an account? <a routerLink="/signup">Signup</a></span
       >
     </div>
+  </div>
+</div> -->
+<div class="container">
+  <input type="checkbox" id="check" />
+  <div class="login form">
+    <header>{{ isLogin ? 'Login' : 'Sign Up' }}</header>
+    <div class="alter alter-danger mt-4" *ngIf="error">
+      {{error}}
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="onFormSubmit(authForm)">
+      <input
+      type="text"
+      placeholder="User Name"
+      ngModel
+      name="email" 
+      required
+      email
+      #email="ngModel"
+    />
+      <div class="help-text" *ngIf="email.touched && !email.valid">
+        <div *ngIf="email.errors && email.errors['required']">Email is Required</div>
+        <div *ngIf="email.errors && email.errors['email']">Invalid Email</div>
+      </div>
+      
+      <input
+      type="password"
+      placeholder="Password"
+      ngModel
+      name="password"
+      required
+      password
+      minlength="6"
+      #password="ngModel"
+    />
+      <div class="help-text" *ngIf="password.touched && !password.valid">
+    
+        <div>{{getPasswordError(password)}}</div>
+      </div>
+      
+        
+  
+      <div class="mt-4">
+        <button type="submit" class="button" [disabled]="!authForm.valid">{{isLogin ? "Login " : "SignUp"}}</button>
+        <button type="button" class="button" (click)="switchToSignUp()" >Switch to {{isLogin ? "SignUp " : "Login"}}</button>
+      </div>
+  
+    </form>
+   
   </div>
 </div>
