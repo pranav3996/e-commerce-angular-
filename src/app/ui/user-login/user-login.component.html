@@ -30,23 +30,28 @@
   <input type="checkbox" id="check" />
   <div class="login form">
     <header>{{ isLogin ? 'Login' : 'Sign Up' }}</header>
-    <div class="alter alter-danger mt-4" *ngIf="error">
-      {{error}}
+
+    <div *ngIf="isLoading" class="text-center mt-4" >
+      <app-loading-spinner></app-loading-spinner>
     </div>
-    <form #authForm="ngForm" (ngSubmit)="onFormSubmit(authForm)">
+    <form #authForm="ngForm" (ngSubmit)="onFormSubmit(authForm)" *ngIf="!isLoading">
+      
       <input
       type="text"
-      placeholder="User Name"
+      placeholder="Email"
       ngModel
       name="email" 
       required
       email
       #email="ngModel"
     />
-      <div class="help-text" *ngIf="email.touched && !email.valid">
-        <div *ngIf="email.errors && email.errors['required']">Email is Required</div>
-        <div *ngIf="email.errors && email.errors['email']">Invalid Email</div>
+    <ng-container *ngIf="email.touched && !email.valid">
+      <div class="error">
+        <ng-container *ngIf="email.errors && email.errors['required']">Email is Required</ng-container>
+        <ng-container *ngIf="email.errors && email.errors['email']">Invalid Email</ng-container>
       </div>
+    </ng-container>
+    
       
       <input
       type="password"
@@ -58,12 +63,16 @@
       minlength="6"
       #password="ngModel"
     />
-      <div class="help-text" *ngIf="password.touched && !password.valid">
-    
-        <div>{{getPasswordError(password)}}</div>
+    <ng-container  *ngIf="password.touched && !password.valid">
+      <div class="error">
+        <ng-container>{{getPasswordError(password)}}</ng-container>
       </div>
+    </ng-container>
+    
       
-        
+    <div class="error  mt-4" *ngIf="error">
+      {{error}}
+    </div>
   
       <div class="mt-4">
         <button type="submit" class="button" [disabled]="!authForm.valid">{{isLogin ? "Login " : "SignUp"}}</button>

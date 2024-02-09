@@ -141,6 +141,7 @@ export class UserLoginComponent  {
               // Redirect to the login page after 5 seconds
               setTimeout(() => {
                 this.isLogin = !this.isLogin;
+                this.isLoading =  !this.isLoading;
                 this.router.navigate(['/login']); // Replace '/login' with the actual path of your login page
               }, 5000);
         }

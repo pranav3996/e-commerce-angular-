@@ -13,27 +13,37 @@ import { UserSignUpComponent } from './ui/user-sign-up/user-sign-up.component';
 const routes: Routes = [
   // Redirect to login page by default
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: UserLoginComponent },
+  { path: 'login', component: UserLoginComponent, title: 'Ecommerce' },
   { path: 'signup', component: UserSignUpComponent },
-  { 
-    path: 'products', 
-    component: ProductsComponent, 
+  {
+    path: 'products',
+    component: ProductsComponent,
     canActivate: [AuthGuard], // Protect the route with AuthGuard
-    
-    // Optional: Add children routes if needed
-    // children: [
-    //   { path: 'cart', component: CartComponent },
-    //   { path: 'checkout', component: CheckoutComponent }
-    // ]
+    title: 'Products',
   },
-  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
-  { path: 'view', component: ShippingAddressComponent, canActivate: [AuthGuard] },
-   { path: '**', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [AuthGuard],
+    title: 'Cart',
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard],
+    title: 'Checkout',
+  },
+  {
+    path: 'view',
+    component: ShippingAddressComponent,
+    canActivate: [AuthGuard],
+    title: 'Shipping Address',
+  },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

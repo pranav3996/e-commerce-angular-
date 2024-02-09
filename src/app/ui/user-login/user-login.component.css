@@ -110,3 +110,11 @@ button {
   cursor: pointer;
   transition: 0.4s;
 }
+.button:disabled,
+.button.disabled {
+  background-color: #f8d197;
+  cursor: default;
+}
+.error{
+  color: red;
+}

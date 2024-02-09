@@ -120,12 +120,14 @@
                       <h1 class="h3 mb-5 mt-3">Billing Address</h1>
                       <div class="cart-product">
                         <hr />
-                        <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+                        <form #userForm="ngForm"  (ngSubmit)="onSubmit()">
                           <div class="row">
                             <div class="col-50">
-                              <label for="username"><i class="fa fa-user"></i> Full Name</label>
-                              <input type="text" id="username" [(ngModel)]="user.username" placeholder="Pranav R Yadav"
-                                [ngModelOptions]="{ standalone: true }" required />
+                               <label for="username"><i class="fa fa-user"></i> Full Name</label>
+                              <input type="text" id="username"  name="username" [(ngModel)]="user.username" placeholder="Pranav R Yadav"
+                              required />  
+                           
+                                
                               <div class="row">
                                 <div class="col-50">
                                   <label for="email"><i class="fa fa-envelope"></i> Email</label>
@@ -146,17 +148,60 @@
                                 placeholder="5/2 Shivaji Nagar" required />
 
                               <div class="row">
+                                
+                               
                                 <div class="col-30">
                                   <label for="city"><i class="fa fa-city"></i> City</label>
-                                  <input type="text" id="city" name="city" [(ngModel)]="user.city" placeholder="Mumbai"
-                                    required />
+                                  <!-- <select class="col-30" id="city" name="city" [(ngModel)]="user.city" (change)="onCityChange()" required>
+                                    <option value="" disabled style=" background-color: #ccc;">Select a City</option>
+                                
+                                    <ng-container *ngIf="!user.state">
+                                      <option class="option-item" *ngFor="let city of flattenedCities" [value]="city">{{ city }}</option>
+                                    </ng-container>
+                                    <ng-container *ngIf="user.state">
+                                      <option class="option-item" *ngFor="let city of citiesByState[user.state]" [value]="city">{{ city }}</option>
+                                    </ng-container>
+                                    <option *ngIf="user.city" value="" class="clear">Clear Selection</option>
+                                  </select> -->
+                                  <select class="col-30" id="city" name="city" [(ngModel)]="user.city" (change)="onCityChange()" required>
+                                    <option value="" disabled style="background-color: #ccc;">Select a City</option>
+                                    <ng-container *ngIf="!user.state; else citiesByStateTemplate">
+                                      <option class="option-item" *ngFor="let city of flattenedCities" [value]="city">{{ city }}</option>
+                                    </ng-container>
+                                    <ng-template #citiesByStateTemplate>
+                                      <option class="option-item" *ngFor="let city of citiesByState[user.state]" [value]="city">{{ city }}</option>
+                                    </ng-template>
+                                    <option *ngIf="user.city" value="" class="clear">Clear Selection</option>
+                                  </select>
+                                  
                                 </div>
+                                
                                 <div class="col-30">
-                                  <label for="state">
-                                    <i class="fa fa-landmark"></i> State</label>
-                                  <input type="text" id="state" name="state" [(ngModel)]="user.state"
-                                    placeholder="Maharastra" required />
+                                  <label for="state"><i class="fa fa-landmark"></i> State</label>
+                                  <!-- <select class="col-30 " id="state" name="state" [(ngModel)]="user.state" (change)="onStateChange()" required>
+                                    <option value=""style=" background-color: #ccc;" disabled>Select a State</option>
+                           
+                                    <ng-container *ngIf="user.city">
+                                      <option class="option-item" [value]="stateByCity[user.city]">{{ stateByCity[user.city] }}</option>
+                                    </ng-container>
+                                    <ng-container *ngIf="!user.city">
+                                      <option class="option-item" *ngFor="let state of Object.keys(citiesByState)" [value]="state">{{ state }}</option>
+                                    </ng-container>
+                                    <option *ngIf="user.state && user.city" value="" class="clear" >Clear Selection</option>
+                                  </select> -->
+                                  <select class="col-30" id="state" name="state" [(ngModel)]="user.state" (change)="onStateChange()" required>
+                                    <option value="" style="background-color: #ccc;" disabled>Select a State</option>
+                                    <ng-container *ngIf="user.city; else noCitySelected">
+                                      <option class="option-item" [value]="stateByCity[user.city]">{{ stateByCity[user.city] }}</option>
+                                    </ng-container>
+                                    <ng-template #noCitySelected>
+                                      <option class="option-item" *ngFor="let state of Object.keys(citiesByState)" [value]="state">{{ state }}</option>
+                                    </ng-template>
+                                    <option *ngIf="user.state && user.city" value="" class="clear">Clear Selection</option>
+                                  </select>
+                                  
                                 </div>
+                                
                                 <div class="col-30">
                                   <label for="zip"><i class="fa fa-map-marker-alt"></i>
                                     Zip</label>

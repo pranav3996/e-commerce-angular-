@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,11 @@ import { ShippingAddressComponent } from './component/shipping-address/shipping-
 import { NgxPayPalModule } from 'ngx-paypal';
 import { UserSignUpComponent } from './ui/user-sign-up/user-sign-up.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
+
+
 
 
 
@@ -33,6 +38,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ShippingAddressComponent,
 
     UserSignUpComponent,
+     LoadingSpinnerComponent,
+ 
+
   
   ],
   imports: [
@@ -42,7 +50,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     ReactiveFormsModule,
     NgxPayPalModule,
-    DragDropModule
+    DragDropModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
 
   ],
   providers: [AuthGuard,UserService,CartService],

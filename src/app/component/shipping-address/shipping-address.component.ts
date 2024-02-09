@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormDataService } from 'src/app/service/form-data.service';
 import Swal from 'sweetalert2';
-
+interface CitiesByState {
+  [key: string]: string[];
+}
+interface StateByCity {
+  [key: string]: string;
+}
 @Component({
   selector: 'app-shipping-address',
   templateUrl: './shipping-address.component.html',
@@ -13,10 +18,18 @@ export class ShippingAddressComponent implements OnInit {
   userData: any;
   editingUser: any;
   isEditing = false;
+  flattenedCities: string[] = [];
   constructor(
     private router: Router,
     private formDataService: FormDataService
-  ) {}
+  ) {
+    Object.keys(this.citiesByState).forEach((state) => {
+      this.citiesByState[state].forEach((city) => {
+        this.stateByCity[city] = state;
+        this.flattenedCities.push(city);
+      });
+    });
+  }
   ngOnInit() {
     this.formDataService.getUserData().subscribe(data => {
       this.userData = data;
@@ -47,5 +60,51 @@ export class ShippingAddressComponent implements OnInit {
   saveChanges() {
     this.formDataService.setUserData(this.editingUser);
     this.isEditing = false;
+  }
+  citiesByState: CitiesByState = {
+    AndhraPradesh: ['Vijayawada', 'Visakhapatnam', 'Tirupati'],
+    ArunachalPradesh: ['Itanagar', 'Naharlagun'],
+    Assam: ['Guwahati', 'Dibrugarh', 'Jorhat'],
+    Bihar: ['Patna', 'Gaya', 'Muzaffarpur'],
+    Chhattisgarh: ['Raipur', 'Bhilai', 'Durg'],
+    Goa: ['Panaji', 'Margao', 'Vasco da Gama'],
+    Gujarat: ['Ahmedabad', 'Surat', 'Vadodara'],
+    Haryana: ['Chandigarh', 'Faridabad', 'Gurgaon'],
+    HimachalPradesh: ['Shimla', 'Kullu', 'Manali'],
+    Jharkhand: ['Ranchi', 'Jamshedpur', 'Dhanbad'],
+    Karnataka: ['Bangalore', 'Mysore', 'Hubli'],
+    Kerala: ['Thiruvananthapuram', 'Kochi', 'Kozhikode'],
+    MadhyaPradesh: ['Bhopal', 'Indore', 'Gwalior'],
+    Maharashtra: ['Mumbai', 'Pune', 'Nagpur'],
+    Manipur: ['Imphal', 'Thoubal'],
+    Meghalaya: ['Shillong', 'Tura'],
+    Mizoram: ['Aizawl', 'Lunglei'],
+    Nagaland: ['Kohima', 'Dimapur'],
+    Odisha: ['Bhubaneswar', 'Cuttack', 'Puri'],
+    Punjab: ['Chandigarh', 'Amritsar', 'Ludhiana'],
+    Rajasthan: ['Jaipur', 'Jodhpur', 'Udaipur'],
+    Sikkim: ['Gangtok', 'Namchi'],
+    TamilNadu: ['Chennai', 'Coimbatore', 'Madurai'],
+    Telangana: ['Hyderabad', 'Warangal', 'Karimnagar'],
+    Tripura: ['Agartala', 'Dharmanagar'],
+    UttarPradesh: ['Lucknow', 'Kanpur', 'Varanasi'],
+    Uttarakhand: ['Dehradun', 'Haridwar', 'Rishikesh'],
+    WestBengal: ['Kolkata', 'Howrah', 'Durgapur'],
+  };
+
+  Object = Object;
+  stateByCity: StateByCity = {};
+  onCityChange() {
+    this.editingUser.state = this.stateByCity[this.editingUser.city] || '';
+    if (!this.editingUser.city) {
+      this.editingUser.state = '';
+    }
+  }
+
+  onStateChange() {
+    if (!this.editingUser.state) {
+      this.editingUser.city = '';
+    }
+  
   }
 }
