@@ -22,8 +22,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private router: Router,
-    private userService: UserService,private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService,
   ) {}
   isAuthenticated=false
   ngOnInit(): void {

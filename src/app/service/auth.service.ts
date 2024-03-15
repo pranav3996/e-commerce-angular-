@@ -5,7 +5,6 @@ import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-
 export interface AuthResponseData {
   idToken: string;
   email: string;
@@ -18,15 +17,16 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
-  private Authenticated = false;
-
-
   isLoggedIn = false;
   errorMessage: string = '';
   userSub = new BehaviorSubject<User | null>(null);
-  clearTimeout:any;
+  clearTimeout: any;
 
-  constructor(private http: HttpClient, private router: Router,private userService: UserService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private userService: UserService
+  ) {}
   signUp(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
@@ -113,37 +113,34 @@ export class AuthService {
         userData._token,
         new Date(userData.expirationDate)
       );
-      if(user.token){
+      if (user.token) {
         this.userSub.next(user);
       }
 
       // user refresh after half n hour than set like this
       //present date and getTime give number if milli seconds
-      let date= new Date().getTime();
+      let date = new Date().getTime();
 
-      let expirationDate=new Date(userData.expirationDate).getTime();
-      this.autoLogout(expirationDate-date);
-      
-
+      let expirationDate = new Date(userData.expirationDate).getTime();
+      this.autoLogout(expirationDate - date);
     } else {
       // Handle the case where 'userData' is not present in localStorage
       console.error('User data not found in localStorage');
     }
   }
- autoLogout(expirationDate:number){
+  autoLogout(expirationDate: number) {
+    console.log('expirationDate' + expirationDate);
 
-  console.log("expirationDate"+expirationDate);
-
-  this.clearTimeout=setTimeout(()=>{
-    this.logout()
-  },expirationDate)
- }
+    this.clearTimeout = setTimeout(() => {
+      this.logout();
+    }, expirationDate);
+  }
   logout() {
     // this.isLoggedIn = false;
     this.userSub.next(null);
     this.router.navigate(['']);
     localStorage.removeItem('userData');
-    if(this.clearTimeout){
+    if (this.clearTimeout) {
       clearTimeout(this.clearTimeout);
     }
   }
@@ -155,22 +152,8 @@ export class AuthService {
     });
   }
 
-  // isAuthenticated(): boolean {
-  //   return this.Authenticated;
-  // }
-
-  // login() {
-  //   this.Authenticated = true;
-  //   return this.Authenticated;
-  // }
-
-  // logout() {
-  //   this.Authenticated = false;
-  // }
-
   getUsername(username: string): void {
     // Upon successful login, set the username
     this.userService.username = username;
   }
-  
 }

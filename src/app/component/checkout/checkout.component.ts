@@ -307,4 +307,5 @@ export class CheckoutComponent implements OnInit {
   //          this.user.state.trim() !== '' &&
   //          this.user.zip.trim() !== '';
   // }
+  
 }
